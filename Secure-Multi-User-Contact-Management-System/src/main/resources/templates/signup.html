@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{:: #content}, ~{:: title})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup page</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
+</head>
+<body>
+
+<div id="content" class="min-h-screen flex items-center justify-center px-4 py-16 bg-gray-50 dark:bg-[#0B0F1A]">
+
+  <!-- Background glow -->
+  <div class="absolute top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#4F6EF7]/10 dark:bg-[#4F6EF7]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative w-full max-w-md">
+
+    <!-- Card -->
+    <div class="bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl dark:shadow-black/40 border border-gray-100 dark:border-gray-700/50 p-8">
+
+      <!-- Header -->
+      <div class="mb-8">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-[#4F6EF7] flex items-center justify-center shadow-md shadow-[#4F6EF7]/30">
+            <i class="fa-solid fa-address-book text-white text-sm"></i>
+          </div>
+          <span class="text-base font-bold text-gray-900 dark:text-white" style="font-family:'Syne',sans-serif;">ContactVault</span>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1" style="font-family:'Syne',sans-serif;">Create your account</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Manage your contacts smarter with ContactVault</p>
+      </div>
+
+      <!-- Session Message -->
+      <div data-th-replace="message :: messagebox"></div>
+
+      <!-- Signup Form -->
+      <form data-th-action="@{/do-register}"
+            method="post"
+            data-th-object="${userForm}"
+            novalidate>
+
+        <!-- Name -->
+        <div class="mb-4">
+          <label for="name" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Full Name
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <i class="fa-solid fa-user text-gray-400 text-sm"></i>
+            </div>
+            <input type="text" id="name"
+                   data-th-field="*{name}"
+                   placeholder="Enter your name"
+                   required
+                   class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-[#4F6EF7] focus:border-[#4F6EF7] block w-full pl-10 pr-4 py-2.5 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200" />
+          </div>
+          <p data-th-if="${#fields.hasErrors('name')}"
+             data-th-errors="*{name}"
+             class="text-red-500 text-xs mt-1.5 px-1">Name is required</p>
+        </div>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label for="email" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Email address
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <i class="fa-solid fa-envelope text-gray-400 text-sm"></i>
+            </div>
+            <input type="email" id="email"
+                   data-th-field="*{email}"
+                   placeholder="xyz@example.com"
+                   required
+                   class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-[#4F6EF7] focus:border-[#4F6EF7] block w-full pl-10 pr-4 py-2.5 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200" />
+          </div>
+          <p data-th-if="${#fields.hasErrors('email')}"
+             data-th-errors="*{email}"
+             class="text-red-500 text-xs mt-1.5 px-1">Email is required</p>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-4">
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Password
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <i class="fa-solid fa-lock text-gray-400 text-sm"></i>
+            </div>
+            <input type="password" id="password"
+                   data-th-field="*{password}"
+                   placeholder="••••••••"
+                   required
+                   class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-[#4F6EF7] focus:border-[#4F6EF7] block w-full pl-10 pr-4 py-2.5 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200" />
+          </div>
+          <p data-th-if="${#fields.hasErrors('password')}"
+             data-th-errors="*{password}"
+             class="text-red-500 text-xs mt-1.5 px-1"></p>
+        </div>
+
+        <!-- Phone Number -->
+        <div class="mb-4">
+          <label for="phone" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Phone Number
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <i class="fa-solid fa-phone text-gray-400 text-sm"></i>
+            </div>
+            <input type="text" id="phone"
+                   data-th-field="*{phoneNumber}"
+                   required
+                   class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-[#4F6EF7] focus:border-[#4F6EF7] block w-full pl-10 pr-4 py-2.5 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200" />
+          </div>
+          <p data-th-if="${#fields.hasErrors('phoneNumber')}"
+             data-th-errors="*{phoneNumber}"
+             class="text-red-500 text-xs mt-1.5 px-1">Phone number is required</p>
+        </div>
+
+        <!-- About -->
+        <div class="mb-6">
+          <label for="about" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            About yourself
+          </label>
+          <textarea id="about"
+                    rows="3"
+                    data-th-field="*{about}"
+                    placeholder="Write something about yourself..."
+                    class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-[#4F6EF7] focus:border-[#4F6EF7] block w-full p-3 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200 resize-none"></textarea>
+          <p data-th-if="${#fields.hasErrors('about')}"
+             data-th-errors="*{about}"
+             class="text-red-500 text-xs mt-1.5 px-1"></p>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-3">
+          <button type="submit"
+                  class="flex-1 text-white bg-[#4F6EF7] hover:bg-[#3B57E0] font-semibold rounded-xl text-sm px-4 py-2.5 text-center shadow-md shadow-[#4F6EF7]/25 transition-all duration-200">
+            <i class="fa-solid fa-user-plus mr-2"></i>Create Account
+          </button>
+          <button type="reset"
+                  class="px-4 py-2.5 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-xl transition-colors duration-200">
+            Reset
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Login link -->
+      <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
+        Already have an account?
+        <a data-th-href="@{'/login'}" class="text-[#4F6EF7] font-semibold hover:underline">Sign in</a>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+</body>
+</html>
+
+<!-- changed -->

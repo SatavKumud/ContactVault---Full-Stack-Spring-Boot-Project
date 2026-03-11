@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+
+<style>
+  @keyframes slideDown { from{opacity:0;transform:translateY(-10px)} to{opacity:1;transform:translateY(0)} }
+  .msg-animate{animation:slideDown 0.35s ease both}
+</style>
+
+<div
+  data-th-if="${session.message}"
+  data-th-object="${session.message}"
+  data-th-fragment="messagebox"
+  data-th-classappend="*{type.name() == 'red'} ? 'bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800/40 text-red-700 dark:text-red-400' : 'bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800/40 text-emerald-700 dark:text-emerald-400'"
+  class="msg-animate flex items-start gap-3 p-4 mb-5 text-sm rounded-xl border"
+  role="alert">
+
+  <!-- Icon -->
+  <div data-th-if="*{type.name() == 'red'}" class="flex-shrink-0 mt-0.5">
+    <i class="fa-solid fa-circle-exclamation text-base"></i>
+  </div>
+  <div data-th-unless="*{type.name() == 'red'}" class="flex-shrink-0 mt-0.5">
+    <i class="fa-solid fa-circle-check text-base"></i>
+  </div>
+
+  <!-- Text -->
+  <span class="flex-1 font-medium" data-th-text="*{content}"></span>
+
+  <data-th-block data-th-text="${@sessionHelper.removeMessage()}"></data-th-block>
+</div>
+
+</body>
+</html>
+
+<!-- changed -->

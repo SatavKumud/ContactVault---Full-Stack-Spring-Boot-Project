@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+  @keyframes cv-float1 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    50%  { transform: translate(45px, -35px) scale(1.08); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes cv-float2 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    50%  { transform: translate(-35px, 45px) scale(1.06); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  .cv-orb1 { animation: cv-float1 10s ease-in-out infinite; }
+  .cv-orb2 { animation: cv-float2 13s ease-in-out infinite; }
+  .cv-bg-orb {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 0;
+  }
+</style>
+</head>
+<body style="margin:0;background:#0B0F1A;min-height:100vh;position:relative;overflow:hidden;">
+  <div class="cv-bg-orb cv-orb1"
+       style="top:80px;right:80px;width:420px;height:420px;
+              background:rgba(79,110,247,0.5);filter:blur(80px);"></div>
+  <div class="cv-bg-orb cv-orb2"
+       style="bottom:40px;left:40px;width:320px;height:320px;
+              background:rgba(255,100,100,0.5);filter:blur(70px);"></div>
+  <h1 style="color:white;text-align:center;padding-top:200px;position:relative;z-index:1;">
+    CAN YOU SEE MOVING ORBS?
+  </h1>
+</body>
+</html>

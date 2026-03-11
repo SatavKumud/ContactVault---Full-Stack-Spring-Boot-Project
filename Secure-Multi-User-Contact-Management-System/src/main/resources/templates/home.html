@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{:: #content}, ~{:: title})}">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>home page</title>
+  <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+  <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
+</head>
+<body>
+
+<div id="content">
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center overflow-hidden bg-gray-50 dark:bg-[#0B0F1A]">
+
+    <!-- Subtle background grid -->
+    <div class="absolute inset-0 opacity-[0.03] dark:opacity-[0.07]"
+         style="background-image: linear-gradient(#4F6EF7 1px, transparent 1px), linear-gradient(to right, #4F6EF7 1px, transparent 1px); background-size: 48px 48px;">
+    </div>
+
+    <!-- Glow orbs -->
+    <div class="absolute top-20 right-20 w-96 h-96 bg-[#4F6EF7]/10 dark:bg-[#4F6EF7]/20 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute bottom-20 left-10 w-64 h-64 bg-indigo-300/10 dark:bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+    <div class="relative max-w-screen-xl mx-auto px-6 py-24 w-full">
+
+      <!-- Logo Showcase -->
+      <div class="flex flex-col items-center justify-center mb-16">
+        <div class="relative flex items-center justify-center">
+          <div class="absolute w-[520px] h-[200px] rounded-full pointer-events-none"
+               style="background: radial-gradient(ellipse, rgba(79,110,247,0.35) 0%, transparent 70%); filter: blur(25px);"></div>
+          <img data-th-src="@{'/imgs/ContactVault.jpg'}"
+               class="relative z-10  rounded-full"
+               style="width: 380px; max-width: 90vw; height: auto; filter: drop-shadow(0 0 25px rgba(79,110,247,0.7)) drop-shadow(0 0 60px rgba(99,102,241,0.4));"
+               alt="ContactVault Logo">
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+
+        <!-- Left: Hero Text -->
+        <div class="space-y-8">
+
+          <!-- Badge -->
+          <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#4F6EF7]/10 dark:bg-[#4F6EF7]/20 border border-[#4F6EF7]/20">
+            <span class="w-2 h-2 rounded-full bg-[#4F6EF7] animate-pulse"></span>
+            <span class="text-xs font-semibold text-[#4F6EF7] tracking-widest uppercase">Contact Management Reimagined</span>
+          </div>
+
+          <!-- Heading -->
+          <div>
+            <h1 class="text-5xl lg:text-6xl font-bold leading-tight text-gray-900 dark:text-white" style="font-family:'Syne',sans-serif;">
+              Your Contacts,
+              <span class="block text-[#4F6EF7]">Organized.</span>
+            </h1>
+          </div>
+
+          <!-- Subtext -->
+          <p class="text-lg text-gray-500 dark:text-gray-400 leading-relaxed max-w-md">
+            ContactVault brings clarity to your professional network — store, search, and manage every contact in one elegant, secure vault.
+          </p>
+
+          <!-- CTA Buttons -->
+          <div class="flex flex-wrap gap-4 pt-2">
+            <a data-th-href="@{'/signup'}"
+               class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-white bg-[#4F6EF7] hover:bg-[#3B57E0] rounded-xl shadow-lg shadow-[#4F6EF7]/25 transition-all duration-200 hover:-translate-y-0.5">
+              <i class="fa-solid fa-rocket"></i>
+              Get Started Free
+            </a>
+            <a data-th-href="@{'/login'}"
+               class="inline-flex items-center gap-2 px-6 py-3 text-sm font-semibold text-gray-700 dark:text-gray-200 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl hover:border-[#4F6EF7] dark:hover:border-[#4F6EF7] transition-all duration-200 hover:-translate-y-0.5 shadow-sm">
+              <i class="fa-solid fa-arrow-right-to-bracket"></i>
+              Sign In
+            </a>
+          </div>
+
+          <!-- Stats Row -->
+          <div class="flex gap-8 pt-4 border-t border-gray-200 dark:border-gray-700/50">
+            <div>
+              <p class="text-2xl font-bold text-gray-900 dark:text-white" style="font-family:'Syne',sans-serif;">100%</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Secure Storage</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-gray-900 dark:text-white" style="font-family:'Syne',sans-serif;">Fast</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">Instant Search</p>
+            </div>
+            <div>
+              <p class="text-2xl font-bold text-gray-900 dark:text-white" style="font-family:'Syne',sans-serif;">Free</p>
+              <p class="text-xs text-gray-500 dark:text-gray-400 mt-0.5">To Get Started</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Contact Card Preview -->
+        <div class="flex justify-center lg:justify-end">
+          <div class="relative w-full max-w-sm">
+
+            <!-- Main card -->
+            <div class="bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl dark:shadow-black/30 border border-gray-100 dark:border-gray-700/50 p-6 space-y-5">
+
+              <!-- Card header -->
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-3">
+<div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-[#4F6EF7] to-indigo-500 flex items-center justify-center text-black dark:text-white text-xl font-bold shadow-xl flex-shrink-0"
+               style="font-family:'Syne',sans-serif;" > CV </div>                  
+                 
+                  <div>
+                    <p class="font-semibold text-gray-900 dark:text-white text-sm" style="font-family:'Syne',sans-serif;">Your contacts will look like this</p>
+                    <p class="text-xs text-gray-400 dark:text-gray-500">Khamgaon, Buldhana, Maharashtra</p>
+                  </div>
+                </div>
+                <span class="w-2 h-2 rounded-full bg-emerald-400"></span>
+              </div>
+
+              <!-- Divider -->
+              <div class="border-t border-gray-100 dark:border-gray-700/50"></div>
+
+              <!-- Contact details -->
+              <div class="space-y-3">
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-[#4F6EF7]/10 flex items-center justify-center">
+                    <i class="fa-solid fa-envelope text-[#4F6EF7] text-xs"></i>
+                  </div>
+                  <span class="text-sm text-gray-600 dark:text-gray-300">contactvault.kgs@gmail.com</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-[#4F6EF7]/10 flex items-center justify-center">
+                    <i class="fa-solid fa-phone text-[#4F6EF7] text-xs"></i>
+                  </div>
+                  <span class="text-sm text-gray-600 dark:text-gray-300">+91 9373214346</span>
+                </div>
+                <div class="flex items-center gap-3">
+                  <div class="w-8 h-8 rounded-lg bg-[#4F6EF7]/10 flex items-center justify-center">
+                    <i class="fa-solid fa-location-dot text-[#4F6EF7] text-xs"></i>
+                  </div>
+                  <span class="text-sm text-gray-600 dark:text-gray-300">Khamgaon, Buldhana, Maharashtra</span>
+                </div>
+              </div>
+
+              <!-- Tags -->
+              <div class="flex gap-2 pt-1">
+              
+                <span class="px-3 py-1 text-xs font-semibold rounded-full bg-amber-50 dark:bg-amber-900/30 text-amber-600 dark:text-amber-400 flex items-center gap-1">
+                  <i class="fa-solid fa-star text-[10px]"></i> FAVOURITE
+                </span>
+              </div>
+            </div>
+
+            <!-- Floating mini card behind -->
+            <div class="absolute -bottom-4 -right-4 -z-10 w-full h-full bg-[#4F6EF7]/10 dark:bg-[#4F6EF7]/5 rounded-2xl border border-[#4F6EF7]/10"></div>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Features Strip -->
+  <section class="bg-white dark:bg-[#0F1525] border-t border-gray-100 dark:border-gray-800">
+    <div class="max-w-screen-xl mx-auto px-6 py-16">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+
+        <div class="flex gap-4 items-start p-6 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200">
+          <div class="w-10 h-10 rounded-xl bg-[#4F6EF7]/10 flex items-center justify-center flex-shrink-0 mt-1">
+            <i class="fa-solid fa-vault text-[#4F6EF7]"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1" style="font-family:'Syne',sans-serif;">Secure Vault</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">All your contacts encrypted and safely stored in one place.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start p-6 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200">
+          <div class="w-10 h-10 rounded-xl bg-[#4F6EF7]/10 flex items-center justify-center flex-shrink-0 mt-1">
+            <i class="fa-solid fa-magnifying-glass text-[#4F6EF7]"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1" style="font-family:'Syne',sans-serif;">Instant Search</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Find any contact in milliseconds with powerful smart search.</p>
+          </div>
+        </div>
+
+        <div class="flex gap-4 items-start p-6 rounded-2xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors duration-200">
+          <div class="w-10 h-10 rounded-xl bg-[#4F6EF7]/10 flex items-center justify-center flex-shrink-0 mt-1">
+            <i class="fa-solid fa-layer-group text-[#4F6EF7]"></i>
+          </div>
+          <div>
+            <h3 class="font-semibold text-gray-900 dark:text-white mb-1" style="font-family:'Syne',sans-serif;">Rich Contact Profiles</h3>
+            <p class="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">Every contact tells a story capture their links, profiles, and details in one place.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+</body>
+</html>
+
+<!-- changed -->

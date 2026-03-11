@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="~{base :: parent(~{:: #content}, ~{:: title})}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>login page</title>
+    <link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" data-th-href="@{'/css/output.css'}">
+</head>
+<body>
+
+<div id="content" class="min-h-screen flex items-center justify-center px-4 py-16 bg-gray-50 dark:bg-[#0B0F1A]">
+
+  <!-- Background glow -->
+  <div class="absolute top-32 left-1/2 -translate-x-1/2 w-96 h-96 bg-[#4F6EF7]/10 dark:bg-[#4F6EF7]/15 rounded-full blur-3xl pointer-events-none"></div>
+
+  <div class="relative w-full max-w-md">
+
+    <!-- Card -->
+    <div class="bg-white dark:bg-gray-800/80 backdrop-blur-sm rounded-2xl shadow-xl dark:shadow-black/40 border border-gray-100 dark:border-gray-700/50 p-8">
+
+      <!-- Header -->
+      <div class="mb-8">
+        <div class="flex items-center gap-2 mb-6">
+          <div class="w-8 h-8 rounded-lg bg-[#4F6EF7] flex items-center justify-center shadow-md shadow-[#4F6EF7]/30">
+            <i class="fa-solid fa-address-book text-white text-sm"></i>
+          </div>
+          <span class="text-base font-bold text-gray-900 dark:text-white" style="font-family:'Syne',sans-serif;">ContactVault</span>
+        </div>
+        <h1 class="text-2xl font-bold text-gray-900 dark:text-white mb-1" style="font-family:'Syne',sans-serif;">Welcome back</h1>
+        <p class="text-sm text-gray-500 dark:text-gray-400">Sign in to your account to continue</p>
+      </div>
+
+      <!-- Error / Logout / Session Messages -->
+      <div class="text-red-500 text-sm text-center bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800/40 rounded-xl px-4 py-3 mb-5" th:if="${param.error}">
+        <i class="fa-solid fa-circle-exclamation mr-2"></i>Invalid username or password.
+      </div>
+      <div class="text-emerald-600 text-sm text-center bg-emerald-50 dark:bg-emerald-900/20 border border-emerald-200 dark:border-emerald-800/40 rounded-xl px-4 py-3 mb-5" th:if="${param.logout}">
+        <i class="fa-solid fa-circle-check mr-2"></i>You have been logged out successfully.
+      </div>
+      <div th:if="${session.message != null}"
+           th:text="${session.message.content}"
+           th:classappend="${session.message.type.name() == 'red' ? 'text-red-500 bg-red-50 dark:bg-red-900/20 border-red-200 dark:border-red-800/40' : 'text-emerald-600 bg-emerald-50 dark:bg-emerald-900/20 border-emerald-200 dark:border-emerald-800/40'}"
+           class="text-sm text-center border rounded-xl px-4 py-3 mb-5">
+      </div>
+
+      <!-- Login Form -->
+      <form method="post" data-th-action="@{/authenticate}" novalidate>
+
+        <!-- Email -->
+        <div class="mb-4">
+          <label for="email" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Email address
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <i class="fa-solid fa-envelope text-gray-400 text-sm"></i>
+            </div>
+            <input name="email" type="email" id="email"
+                   placeholder="xyz@example.com"
+                   required
+                   class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-[#4F6EF7] focus:border-[#4F6EF7] block w-full pl-10 pr-4 py-2.5 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200" />
+          </div>
+        </div>
+
+        <!-- Password -->
+        <div class="mb-6">
+          <label for="password" class="block mb-2 text-sm font-medium text-gray-700 dark:text-gray-300">
+            Password
+          </label>
+          <div class="relative">
+            <div class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none">
+              <i class="fa-solid fa-lock text-gray-400 text-sm"></i>
+            </div>
+            <input name="password" type="password" id="password"
+                   placeholder="••••••••"
+                   required
+                   class="bg-gray-50 dark:bg-gray-700/50 border border-gray-200 dark:border-gray-600 text-gray-900 dark:text-white text-sm rounded-xl focus:ring-2 focus:ring-[#4F6EF7] focus:border-[#4F6EF7] block w-full pl-10 pr-4 py-2.5 placeholder-gray-400 dark:placeholder-gray-500 transition-colors duration-200" />
+          </div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="flex gap-3 mb-6">
+          <button type="submit"
+                  class="flex-1 text-white bg-[#4F6EF7] hover:bg-[#3B57E0] font-semibold rounded-xl text-sm px-4 py-2.5 text-center shadow-md shadow-[#4F6EF7]/25 transition-all duration-200">
+            <i class="fa-solid fa-arrow-right-to-bracket mr-2"></i>Login
+          </button>
+          <button type="reset"
+                  class="px-4 py-2.5 text-sm font-semibold text-gray-600 dark:text-gray-300 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-xl transition-colors duration-200">
+            Reset
+          </button>
+        </div>
+
+      </form>
+
+      <!-- Divider -->
+      <div class="flex items-center gap-3 mb-5">
+        <div class="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+        <span class="text-xs text-gray-400 dark:text-gray-500 font-medium">OR CONTINUE WITH</span>
+        <div class="flex-1 h-px bg-gray-200 dark:bg-gray-700"></div>
+      </div>
+
+      <!-- Google Login -->
+      <a data-th-href="@{'/oauth2/authorization/google'}"
+         class="flex items-center justify-center gap-3 w-full border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200 mb-3 shadow-sm">
+        <svg class="h-5 w-5" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48">
+          <path fill="#EA4335" d="M24 9.5c3.54 0 6.73 1.22 9.24 3.6l6.9-6.9C35.64 2.36 30.18 0 24 0 14.64 0 6.48 5.48 2.52 13.44l8.04 6.24C12.48 13.02 17.76 9.5 24 9.5z"/>
+          <path fill="#4285F4" d="M46.14 24.56c0-1.64-.14-3.22-.4-4.76H24v9.02h12.48c-.54 2.92-2.18 5.4-4.66 7.06l7.2 5.6c4.2-3.88 6.62-9.6 6.62-16.92z"/>
+          <path fill="#FBBC05" d="M10.56 28.68A14.48 14.48 0 019.5 24c0-1.62.28-3.18.78-4.68l-8.04-6.24A23.94 23.94 0 000 24c0 3.86.92 7.5 2.52 10.56l8.04-5.88z"/>
+          <path fill="#34A853" d="M24 48c6.48 0 11.94-2.14 15.92-5.82l-7.2-5.6c-2 1.34-4.54 2.14-8.72 2.14-6.24 0-11.52-3.52-13.44-8.68l-8.04 5.88C6.48 42.52 14.64 48 24 48z"/>
+        </svg>
+        Continue with Google
+      </a>
+
+      <!-- GitHub Login -->
+      <a data-th-href="@{'/oauth2/authorization/github'}"
+         class="flex items-center justify-center gap-3 w-full border border-gray-200 dark:border-gray-700 rounded-xl px-4 py-2.5 text-sm font-medium text-gray-700 dark:text-gray-300 bg-white dark:bg-gray-800 hover:bg-gray-50 dark:hover:bg-gray-700/50 transition-colors duration-200 shadow-sm">
+        <svg class="h-5 w-5" viewBox="0 0 16 16" fill="currentColor">
+          <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27s1.36.09 2 .27c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.01 8.01 0 0016 8c0-4.42-3.58-8-8-8z"/>
+        </svg>
+        Continue with GitHub
+      </a>
+
+      <!-- Sign up link -->
+      <p class="text-center text-sm text-gray-500 dark:text-gray-400 mt-6">
+        Don't have an account?
+        <a data-th-href="@{'/signup'}" class="text-[#4F6EF7] font-semibold hover:underline">Sign up free</a>
+      </p>
+
+    </div>
+  </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+</body>
+</html>
+
+<!-- changed -->

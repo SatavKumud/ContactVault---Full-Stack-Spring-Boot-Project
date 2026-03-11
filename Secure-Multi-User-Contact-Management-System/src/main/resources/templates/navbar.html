@@ -1,0 +1,85 @@
+<nav th:fragment="navbar"
+     class="bg-white/90 dark:bg-[#0B0F1A]/90 backdrop-blur-md fixed w-full z-20 top-0 left-0 border-b border-gray-200/60 dark:border-gray-700/40 shadow-sm">
+
+  <div class="max-w-screen-xl flex items-center justify-between mx-auto px-6 py-3">
+
+    <!-- Logo -->
+    <a href="/home" class="flex items-center space-x-3 group">
+      <div class="w-8 h-8 rounded-lg bg-[#4F6EF7] flex items-center justify-center shadow-md shadow-[#4F6EF7]/30">
+        <i class="fa-solid fa-address-book text-white text-sm"></i>
+      </div>
+      <span class="text-lg font-bold tracking-tight text-gray-900 dark:text-white" style="font-family:'Syne',sans-serif;">
+        ContactVault
+      </span>
+    </a>
+
+    <!-- Right side actions -->
+    <div class="flex items-center gap-2 md:order-2">
+
+      <!-- Theme Toggle -->
+      <button id="theme_change_button"
+        class="w-9 h-9 flex items-center justify-center rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors duration-200"
+        title="Toggle theme">
+        <i class="fa-solid fa-circle-half-stroke text-sm"></i>
+      </button>
+
+      <!-- Login -->
+      <a data-th-href="@{'/login'}"
+         class="text-sm font-medium text-gray-700 dark:text-gray-300 hover:text-[#4F6EF7] dark:hover:text-[#4F6EF7] px-4 py-2 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800 transition-all duration-200">
+        Login
+      </a>
+
+      <!-- Sign Up -->
+      <a data-th-href="@{'/signup'}"
+         class="text-sm font-semibold text-white bg-[#4F6EF7] hover:bg-[#3B57E0] px-4 py-2 rounded-lg shadow-md shadow-[#4F6EF7]/25 transition-all duration-200">
+        Sign Up
+      </a>
+
+      <!-- Mobile menu toggle -->
+      <button data-collapse-toggle="navbar-sticky" type="button"
+              class="ml-1 inline-flex items-center p-2 w-9 h-9 justify-center text-gray-500 rounded-lg md:hidden hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors">
+        <svg class="w-5 h-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        </svg>
+      </button>
+    </div>
+
+    <!-- Nav Links -->
+    <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
+      <ul class="flex flex-col md:flex-row md:space-x-1 p-4 md:p-0 mt-4 md:mt-0 border border-gray-200 md:border-0 rounded-xl bg-white dark:bg-[#0B0F1A] md:bg-transparent dark:md:bg-transparent">
+
+        <li>
+          <a data-th-href="@{'/home'}"
+             class="block py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#4F6EF7] dark:hover:text-[#4F6EF7] hover:bg-[#EEF1FE] dark:hover:bg-[#4F6EF7]/10 rounded-lg transition-all duration-200">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a data-th-href="@{'/about'}"
+             class="block py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#4F6EF7] dark:hover:text-[#4F6EF7] hover:bg-[#EEF1FE] dark:hover:bg-[#4F6EF7]/10 rounded-lg transition-all duration-200">
+            About
+          </a>
+        </li>
+
+        <li>
+          <a data-th-href="@{'/services'}"
+             class="block py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#4F6EF7] dark:hover:text-[#4F6EF7] hover:bg-[#EEF1FE] dark:hover:bg-[#4F6EF7]/10 rounded-lg transition-all duration-200">
+            Services
+          </a>
+        </li>
+
+        <li>
+          <a data-th-href="@{'/contact'}"
+             class="block py-2 px-4 text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-[#4F6EF7] dark:hover:text-[#4F6EF7] hover:bg-[#EEF1FE] dark:hover:bg-[#4F6EF7]/10 rounded-lg transition-all duration-200">
+            Contact
+          </a>
+        </li>
+
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<!-- changed -->

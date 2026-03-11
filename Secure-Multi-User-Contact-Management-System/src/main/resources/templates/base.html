@@ -1,0 +1,162 @@
+<html class="light" lang="en"
+th:fragment="parent(content, title)" xmlns:th="http://www.thymeleaf.org">
+<head>
+
+<title th:replace="${title}">Base</title>
+
+<link href="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.css" rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/css/output.css}">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  /* ============================================
+     GLOBAL THEME & FONTS
+  ============================================ */
+  :root {
+    --accent: #4F6EF7;
+    --accent-hover: #3B57E0;
+    --accent-light: #EEF1FE;
+  }
+  body { font-family: 'DM Sans', sans-serif; }
+  h1,h2,h3,h4,h5,h6 { font-family: 'Syne', sans-serif; }
+
+  /* ============================================
+     ANIMATED ORB KEYFRAMES
+  ============================================ */
+  @keyframes cv-float1 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    50%  { transform: translate(45px, -35px) scale(1.08); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes cv-float2 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    50%  { transform: translate(-35px, 45px) scale(1.06); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes cv-float3 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    33%  { transform: translate(30px, -20px) scale(1.1); }
+    66%  { transform: translate(-20px, 30px) scale(0.95); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+  @keyframes cv-float4 {
+    0%   { transform: translate(0px, 0px) scale(1); }
+    50%  { transform: translate(25px, 25px) scale(1.12); }
+    100% { transform: translate(0px, 0px) scale(1); }
+  }
+
+  /* ============================================
+     ORB ANIMATION CLASSES
+  ============================================ */
+  .cv-orb1 { animation: cv-float1 10s ease-in-out infinite; }
+  .cv-orb2 { animation: cv-float2 13s ease-in-out infinite; }
+  .cv-orb3 { animation: cv-float3 16s ease-in-out infinite; }
+  .cv-orb4 { animation: cv-float4 9s ease-in-out infinite; }
+
+  /* ============================================
+     FADE UP ANIMATIONS
+  ============================================ */
+  @keyframes cv-fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes cv-cardIn {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cv-fu    { animation: cv-fadeUp 0.7s ease both; }
+  .cv-fu-1  { animation: cv-fadeUp 0.7s 0.12s ease both; }
+  .cv-fu-2  { animation: cv-fadeUp 0.7s 0.24s ease both; }
+  .cv-fu-3  { animation: cv-fadeUp 0.7s 0.36s ease both; }
+  .cv-fu-4  { animation: cv-fadeUp 0.7s 0.48s ease both; }
+
+  .cv-ci-1  { animation: cv-cardIn 0.55s 0.10s ease both; }
+  .cv-ci-2  { animation: cv-cardIn 0.55s 0.20s ease both; }
+  .cv-ci-3  { animation: cv-cardIn 0.55s 0.30s ease both; }
+  .cv-ci-4  { animation: cv-cardIn 0.55s 0.40s ease both; }
+  .cv-ci-5  { animation: cv-cardIn 0.55s 0.50s ease both; }
+  .cv-ci-6  { animation: cv-cardIn 0.55s 0.60s ease both; }
+
+  /* ============================================
+     SERVICE CARD HOVER
+  ============================================ */
+  .svc-card {
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .svc-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 24px 48px -12px rgba(79, 110, 247, 0.2);
+  }
+
+  /* ============================================
+     ANIMATED ORB BASE STYLE
+     All orbs use inline style for color/size,
+     these classes just handle positioning
+  ============================================ */
+  .cv-bg-orb {
+    position: absolute;
+    border-radius: 9999px;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  /* ============================================
+     SUCCESS / ERROR PAGE ANIMATIONS
+  ============================================ */
+  @keyframes cv-popIn {
+    0%   { transform: scale(0.5); opacity: 0; }
+    70%  { transform: scale(1.1); }
+    100% { transform: scale(1); opacity: 1; }
+  }
+  @keyframes cv-shake {
+    0%,100% { transform: translateX(0); }
+    20%     { transform: translateX(-6px); }
+    40%     { transform: translateX(6px); }
+    60%     { transform: translateX(-4px); }
+    80%     { transform: translateX(4px); }
+  }
+  @keyframes cv-pulseRing {
+    0%   { transform: scale(0.9); opacity: 0.6; }
+    100% { transform: scale(1.5); opacity: 0; }
+  }
+  @keyframes cv-slideDown {
+    from { opacity: 0; transform: translateY(-10px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .cv-pop-in    { animation: cv-popIn 0.5s cubic-bezier(0.175,0.885,0.32,1.275) 0.2s both; }
+  .cv-shake     { animation: cv-shake 0.5s ease 0.3s both; }
+  .cv-pulse-ring{ animation: cv-pulseRing 1.5s ease-out 0.5s infinite; }
+  .cv-slide-down{ animation: cv-slideDown 0.35s ease both; }
+</style>
+
+</head>
+
+<body class="bg-gray-50 text-gray-900 dark:bg-[#0B0F1A] dark:text-gray-100 transition-colors duration-300">
+
+<!-- if user logged in : navbar -->
+<div th:if="${loggedInUser}">
+    <div data-th-replace="~{user/user_navbar::user-navbar}"></div>
+</div>
+
+<!-- if user not logged in then navbar -->
+<div th:unless="${loggedInUser}">
+    <div data-th-replace="~{navbar :: navbar}"></div>
+</div>
+
+<!-- BUG FIX: sm:ml-64 only when loggedInUser, else no left margin -->
+<main th:class="${loggedInUser} ? 'pt-16 sm:ml-64 min-h-screen bg-gray-50 dark:bg-[#0B0F1A] text-gray-900 dark:text-gray-100 transition-colors duration-300' : 'pt-16 min-h-screen bg-gray-50 dark:bg-[#0B0F1A] text-gray-900 dark:text-gray-100 transition-colors duration-300'">
+
+    <section th:replace="${content}"></section>
+
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://cdn.jsdelivr.net/npm/flowbite@4.0.1/dist/flowbite.min.js"></script>
+<script data-th-src="@{/js/script.js}"></script>
+</body>
+</html>
+
+<!-- changed -->
